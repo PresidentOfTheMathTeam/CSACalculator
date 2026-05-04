@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>CSA Score Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <div class="mouse-cursor-gradient-tracking"></div>
+
+    <div id="intro-section" class="centered-section">
+        <h1>POTMT CSA Score Calculator</h1>
+        <h3>This simple tool will show you what grade is required on your CSA to achive an A, B, C or D in your class.</h3>
+        <div class="navigation-button" onclick="openInputSection();">&#8595; Begin</div>
+    </div>
+
+    <div id="input-section" class="centered-section">
+        <h1>Instructions:</h1>
+        <p>Open Powerschool and copy the grades for the class you would like to calculate, as shown below.<br><br><b>DO NOT</b> copy the blue bar at the top, or the "last updated" at the bottom.<br> <br>After you have copied them, paste them into the textbox below and press "Go"!</p>
+        <input type="text" id="powerschool-paste" placeholder="Paste your PowerSchool grades here!">
+        <button onclick="startAnalysis()">Go</button>
+        <h3>Video Instructions:</h3>
+        <img src="tutorial.gif">
+    </div>
+
+    <div id="tables-section" class="centered-section">
+        <h2>Double Check Your Assignments:</h2>
+        
+        <p>Make sure to check these three things: <br>
+            The scores of every assignment is correct
+            All assignments marked with <img src="img/excluded.svg" alt="Excluded Symbol" width="15" height="15"> or <img src="img/exempt.svg" alt="Exempt Symbol" width="15" height="15"> have "exempt" checked<br>
+            All categories (Such as Formative or Summative) have their weights entered
+        </p>
+        
+        <p>Typically, summative is worth 90% and formative is worth 10%, but some courses use different weights- ask your teacher or use your best guess!</p>
+        <p><b>*IMPORTANT* - IF YOUR CSA IS LISTED AS AN ASSSIGNMENT IN THIS VIEW, MAKE SURE YOU MARK IT AS EXEMPT- YOU WILL ENTER IT IN THE NEXT STEP!</b></p>
+        
+        <br style="margin-top: 5em;">
+
+        <div id="tables"></div>
+        
+        <div class="navigation-button" onclick="document.documentElement.style.setProperty('--positionOffset', '100%');" style="margin-right: 16px;">&#8593; Go Back</div>
+        <div class="navigation-button" onclick="startCSAInput();">&#8595; Continue</div>
+    </div>
+
+    <div id="csa-input-section" class="centered-section">
+        <h2>Input your CSA information:</h2>
+
+        <h3>My CSA is in this category:</h3>
+        <div id="assignment-type-container"></div>
+        <input type="radio" class="csa-category-option" name="csa-category"><label>In its own category, which is weighted <input type="number" id="new-category-weight" placeholder="50" class="precent-weight">%</label><br>
+
+        <h3>My CSA is worth <input type="number" class="precent-weight" id="csa-maxpoints"> points.</h3>
+
+        <h3>I want to get a
+            <select id="desired-grade">
+                <option value="0.9">A (90%)</option>
+                <option value="0.8">B (80%)</option>
+                <option value="0.7">C (70%)</option>
+                <option value="0.6">D (60%)</option>
+            </select>
+            in the class.
+        </h3>
+
+        <div class="navigation-button" onclick="document.documentElement.style.setProperty('--positionOffset', '200%');" style="margin-right: 16px;">&#8593; Go Back</div>
+        <div class="navigation-button" onclick="calculateFinalGrade();">Calculate Final Grade</div>
+
+        <div id="result-container" style="display: none;">
+            <h2>Result:</h2>
+            <h3 id="end-message-score">You need to score a <b id="result-score">0</b> out of <b id="result-maxscore">0</b> to get an <b id="result-grade">A</b> in your class.</h3>
+            <h3 id="end-message-impossible">It is not possible to score a <b id="failed-grade">A</b> in your class with a <b id="failed-maxscore">0</b> point CSA.</h3>
+            <b id="end-message-precent">That's a <b id="result-precentage">0</b> percent<br> <br><p id="goodfaith-note">IMPORTANT NOTE!!! As long as you demonstrate a "Good Faith Effort," it is impossible to score below a 50% on your summative CSA.</b></p>
+            <div class="navigation-button" onclick="location.reload()">Restart</div>
+            <p>For the best unblocked games, go to <a href="https://potmt.online" style="color:white;">POTMT.ONLINE</a>!!! Have a great winter break, Dukes!</p>
+        </div>
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
