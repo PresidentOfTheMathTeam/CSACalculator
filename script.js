@@ -217,7 +217,14 @@ function calculateFinalGrade() {
             categoryPointsPossible = categoryPointsPossible + parseFloat(assignment.maxscore);
         });
 
-        categoryScores.push({ "score": categoryPointsEarned, "maxscore": categoryPointsPossible, "grade": categoryPointsEarned/categoryPointsPossible });
+        let grade;
+        if(categoryPointsPossible == 0) {
+            grade = 0;
+        } else {
+            grade = categoryPointsEarned/categoryPointsPossible;
+        }
+
+        categoryScores.push({ "score": categoryPointsEarned, "maxscore": categoryPointsPossible, "grade": grade });
     });
 
     let neededGrade = null;
